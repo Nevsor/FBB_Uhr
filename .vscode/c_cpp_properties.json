@@ -10,6 +10,7 @@
             "includePath": [
                 "/home/sven/Projekte/FBB_Uhr/include",
                 "/home/sven/Projekte/FBB_Uhr/src",
+                "/home/sven/Projekte/FBB_Uhr/.pio/libdeps/uno/AccelStepper/src",
                 "/home/sven/Projekte/FBB_Uhr/.pio/libdeps/uno/TinyDMXSerial/src",
                 "/home/sven/Projekte/FBB_Uhr/.pio/libdeps/uno/Stepper/src",
                 "/home/sven/.platformio/packages/framework-arduino-avr/cores/arduino",
@@ -26,6 +27,7 @@
                 "path": [
                     "/home/sven/Projekte/FBB_Uhr/include",
                     "/home/sven/Projekte/FBB_Uhr/src",
+                    "/home/sven/Projekte/FBB_Uhr/.pio/libdeps/uno/AccelStepper/src",
                     "/home/sven/Projekte/FBB_Uhr/.pio/libdeps/uno/TinyDMXSerial/src",
                     "/home/sven/Projekte/FBB_Uhr/.pio/libdeps/uno/Stepper/src",
                     "/home/sven/.platformio/packages/framework-arduino-avr/cores/arduino",
