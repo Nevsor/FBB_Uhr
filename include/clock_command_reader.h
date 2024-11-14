@@ -17,6 +17,7 @@ public:
 template <int MAX_COMMANDS>
 class StubClockCommandReader {
 public:
+    StubClockCommandReader() = default;
     void add_command(ClockCommand const& command, int start_at_millis);
     ClockCommand read_command(uint8_t *) const;
 

@@ -6,6 +6,7 @@
 
 #include <configuration.h>
 #include <clock_command.h>
+#include <utils.h>
 
 bool is_in_range(int value, int min, int max) {
     return min <= value && value <= max;
@@ -98,8 +99,7 @@ ClockCommand DmxClockCommandReader::read_command(uint8_t *dmx_data) const {
     const int HOLDING_SET_ZERO_OFFSET = 6;
     const int SYNCHRONIZATION_MODE_OFFSET = 6;
     const unsigned long MAX_MILLIS = ~0ul;
-    const int SECONDS = 1000;
-    
+   
     static_assert (NUM_CLOCK_CHANNELS == 7);
     static_assert (DMX_FIRST_CLOCK_CHANNEL + NUM_CLOCK_CHANNELS <= DMX_CHANNELS + 1);
     
