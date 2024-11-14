@@ -6,6 +6,12 @@ enum class MovementMode {
    DONT_MOVE,
 };
 
+enum class SynchronizationMode {
+    INDEPENDENT,
+    SYNCHRONOUS,
+    CLOCK,
+};
+
 enum class Direction {
     CLOCKWISE,
     COUNTER_CLOCKWISE,
@@ -21,5 +27,6 @@ struct ClockHandCommand {
 struct ClockCommand {
     ClockHandCommand hour_hand;
     ClockHandCommand minute_hand;
+    SynchronizationMode synchronization_mode;
     bool set_zero;
 };

@@ -1,25 +1,25 @@
 #include <Arduino.h>
 
 #include <configuration.h>
-#include <dmx.h>
-#include <clock_hand_driver.h>
+#include <dmx_source.h>
+#include <clock_driver.h>
+#include <clock_command_reader.h>
 
-ClockHandDriver hour_hand_driver;
-ClockHandDriver minute_hand_driver;
+ClockDriver *clock_driver;
+DmxClockCommandReader *command_reader;
+DmxSource *dmx_source;
 
-void setup() {
-  setup_dmx();
+void setup() { 
+    clock_driver = new ClockDriver();
+    dmx_source = new DmxSource();
+    command_reader = new DmxClockCommandReader();
 }
 
 void loop() {
-  ClockCommand command = read_clock_command();
-  
-  if (command.set_zero) {
-    hour_hand_driver.set_zero();
-    minute_hand_driver.set_zero();
-  }
-  
-  hour_hand_driver.set_command(command.hour_hand);
-  minute_hand_driver.set_command(command.minute_hand);
-
+    if (dmx_source->is_updated()) {
+        ClockCommand command = command_reader->read_command(dmx_source->data());
+        clock_driver->set_command(command);
+        dmx_source->reset_updated();
+    }
+    clock_driver->run_timestep();
 }
