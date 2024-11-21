@@ -29,15 +29,17 @@ ClockDriver::ClockDriver()
     multi_stepper.addStepper(minute_hand);
 }
 
-void run_timestep_independent(ClockHandCommand command, AccelStepper stepper) 
+void run_timestep_independent(ClockHandCommand const& command, AccelStepper &stepper) 
 {
     switch (command.mode) {
     case MovementMode::DONT_MOVE:
         break;
     case MovementMode::MANUAL:
         stepper.runSpeed();
+        break;
     case MovementMode::AUTOMATIC:
         stepper.run();
+        break;
     }
 }
 
