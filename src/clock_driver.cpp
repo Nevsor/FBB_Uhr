@@ -7,23 +7,23 @@ ClockDriver::ClockDriver()
 {
     pinMode(MOTOR1_PWM_A, OUTPUT);
     pinMode(MOTOR1_PWM_B, OUTPUT);
-    pinMode(MOTOR1_DIR_A, OUTPUT);
-    pinMode(MOTOR1_DIR_B, OUTPUT);
+    pinMode(MOTOR1_BRAKE_A, OUTPUT);
+    pinMode(MOTOR1_BRAKE_B, OUTPUT);
 
     pinMode(MOTOR2_PWM_A, OUTPUT);
     pinMode(MOTOR2_PWM_B, OUTPUT);
-    pinMode(MOTOR2_DIR_A, OUTPUT);
-    pinMode(MOTOR2_DIR_B, OUTPUT);
+    pinMode(MOTOR2_BRAKE_A, OUTPUT);
+    pinMode(MOTOR2_BRAKE_B, OUTPUT);
 
     digitalWrite(MOTOR1_PWM_A, HIGH);
     digitalWrite(MOTOR1_PWM_B, HIGH);
-    digitalWrite(MOTOR1_DIR_A, LOW);
-    digitalWrite(MOTOR1_DIR_B, LOW);
+    digitalWrite(MOTOR1_BRAKE_A, LOW);
+    digitalWrite(MOTOR1_BRAKE_B, LOW);
                              
     digitalWrite(MOTOR2_PWM_A, HIGH);
     digitalWrite(MOTOR2_PWM_B, HIGH);
-    digitalWrite(MOTOR2_DIR_A, LOW);
-    digitalWrite(MOTOR2_DIR_B, LOW);
+    digitalWrite(MOTOR2_BRAKE_A, LOW);
+    digitalWrite(MOTOR2_BRAKE_B, LOW);
 
     multi_stepper.addStepper(hour_hand);
     multi_stepper.addStepper(minute_hand);
