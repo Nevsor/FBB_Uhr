@@ -14,7 +14,27 @@ void run_tests(ClockDriver &clock_driver) {
                 50, /* position */
                 5, /* speed */
                 Direction::CLOCKWISE,
-                MovementMode::AUTOMATIC
+                MovementMode::DONT_MOVE
+            }, 
+            ClockHandCommand {
+                0, /* position */
+                5, /* speed */
+                Direction::CLOCKWISE,
+                MovementMode::DONT_MOVE
+            },
+            SynchronizationMode::INDEPENDENT,
+            false
+        },
+        3 * SECONDS
+    );
+    
+    command_reader.add_command(
+        ClockCommand {
+            ClockHandCommand {
+                50, /* position */
+                5, /* speed */
+                Direction::CLOCKWISE,
+                MovementMode::MANUAL
             }, 
             ClockHandCommand {
                 0, /* position */
@@ -25,9 +45,29 @@ void run_tests(ClockDriver &clock_driver) {
             SynchronizationMode::INDEPENDENT,
             false
         },
-        3 * SECONDS
+        4 * SECONDS
     );
     
+    command_reader.add_command(
+        ClockCommand {
+            ClockHandCommand {
+                50, /* position */
+                5, /* speed */
+                Direction::CLOCKWISE,
+                MovementMode::MANUAL
+            }, 
+            ClockHandCommand {
+                0, /* position */
+                5, /* speed */
+                Direction::COUNTER_CLOCKWISE,
+                MovementMode::DONT_MOVE,
+            },
+            SynchronizationMode::INDEPENDENT,
+            false
+        },
+        9 * SECONDS
+    );
+
     command_reader.add_command(
         ClockCommand {
             ClockHandCommand {
@@ -45,30 +85,12 @@ void run_tests(ClockDriver &clock_driver) {
             SynchronizationMode::INDEPENDENT,
             false
         },
-        6 * SECONDS
+        12 * SECONDS
     );
+
     
-    command_reader.add_command(
-        ClockCommand {
-            ClockHandCommand {
-                0, /* position */
-                5, /* speed */
-                Direction::COUNTER_CLOCKWISE,
-                MovementMode::AUTOMATIC
-            }, 
-            ClockHandCommand {
-                0, /* position */
-                5, /* speed */
-                Direction::CLOCKWISE,
-                MovementMode::AUTOMATIC,
-            },
-            SynchronizationMode::SYNCHRONOUS,
-            false
-        },
-        9 * SECONDS
-    );
     
-    while (millis() < 12 * SECONDS) {
+    while (millis() < 30 * SECONDS) {
         clock_driver.set_command(command_reader.read_command(nullptr));
         clock_driver.run_timestep();
     }

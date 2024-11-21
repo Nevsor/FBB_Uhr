@@ -39,10 +39,10 @@ void StubClockCommandReader<MAX_COMMANDS>::add_command(
     if (num_commands >= MAX_COMMANDS)
         return;
     
-    num_commands++;
-
     commands[num_commands] = command;
     commands_timings_milliseconds[num_commands] = start_at_millis;
+
+    num_commands++;
 }
 
 template <int MAX_COMMANDS>
