@@ -1,3 +1,5 @@
 #pragma once
 
-void run_tests();
+#include <clock_driver.h>
+
+void run_tests(ClockDriver &clock_driver);

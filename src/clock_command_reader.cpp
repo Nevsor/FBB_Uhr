@@ -123,34 +123,3 @@ ClockCommand DmxClockCommandReader::read_command(uint8_t *dmx_data) const {
     
     return command;
 }
-
-template <int MAX_COMMANDS>
-void StubClockCommandReader<MAX_COMMANDS>::add_command(
-    ClockCommand const& command, 
-    int start_at_millis) 
-{
-    assert (num_commands < MAX_COMMANDS);
-    
-    if (num_commands >= MAX_COMMANDS)
-        return;
-    
-    num_commands++;
-
-    commands[num_commands] = command;
-    commands_timings_milliseconds[num_commands] = start_at_millis;
-}
-
-template <int MAX_COMMANDS>
-ClockCommand StubClockCommandReader<MAX_COMMANDS>::read_command(uint8_t *) const {
-    auto current_command = const_cast<StubClockCommandReader &>(current_command);
-
-    unsigned long now = millis();
-
-    if (current_command < num_commands-1) {
-        while (commands_timings_milliseconds[current_command+1] < now) {
-            current_command++;
-        }
-    }
-
-    return commands[current_command];
-}

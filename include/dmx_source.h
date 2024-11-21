@@ -11,7 +11,7 @@
 class DmxSource {
 public:
     DmxSource(): dmx(buffer, NUM_CLOCK_CHANNELS) {
-       dmx.begin(DMXMode::Receiver);
+       dmx.begin(DMXMode::Receiver, DMX_FIRST_CLOCK_CHANNEL);
     };
     bool is_updated() { return dmx.dataUpdated(); }; 
     void reset_updated() { dmx.resetUpdated(); };

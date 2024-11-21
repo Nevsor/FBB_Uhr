@@ -17,8 +17,8 @@ void setup() {
     dmx_source = new DmxSource();
     command_reader = new DmxClockCommandReader();
 
-    if constexpr (RUN_TESTS_ON_STARTUP)
-        run_tests();
+    if (RUN_TESTS_ON_STARTUP)
+        run_tests(*clock_driver);
 }
 
 void loop() {
