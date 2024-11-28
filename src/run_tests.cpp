@@ -11,14 +11,14 @@ void run_tests(ClockDriver &clock_driver) {
     command_reader.add_command(
         ClockCommand {
             ClockHandCommand {
-                50, /* position */
-                5, /* speed */
+                5000, /* position */
+                500*2, /* speed */
                 Direction::CLOCKWISE,
                 MovementMode::DONT_MOVE
             }, 
             ClockHandCommand {
                 0, /* position */
-                5, /* speed */
+                500*2, /* speed */
                 Direction::CLOCKWISE,
                 MovementMode::DONT_MOVE
             },
@@ -31,14 +31,14 @@ void run_tests(ClockDriver &clock_driver) {
     command_reader.add_command(
         ClockCommand {
             ClockHandCommand {
-                50, /* position */
-                5, /* speed */
+                5000, /* position */
+                500*2, /* speed */
                 Direction::CLOCKWISE,
                 MovementMode::MANUAL
             }, 
             ClockHandCommand {
                 0, /* position */
-                5, /* speed */
+                500*2, /* speed */
                 Direction::COUNTER_CLOCKWISE,
                 MovementMode::MANUAL,
             },
@@ -52,13 +52,13 @@ void run_tests(ClockDriver &clock_driver) {
         ClockCommand {
             ClockHandCommand {
                 50, /* position */
-                5, /* speed */
+                500*2, /* speed */
                 Direction::CLOCKWISE,
                 MovementMode::MANUAL
             }, 
             ClockHandCommand {
                 0, /* position */
-                5, /* speed */
+                500, /* speed */
                 Direction::COUNTER_CLOCKWISE,
                 MovementMode::DONT_MOVE,
             },
@@ -71,16 +71,16 @@ void run_tests(ClockDriver &clock_driver) {
     command_reader.add_command(
         ClockCommand {
             ClockHandCommand {
-                50, /* position */
-                5, /* speed */
+                500, /* position */
+                500, /* speed */
                 Direction::CLOCKWISE,
-                MovementMode::DONT_MOVE
+                MovementMode::AUTOMATIC
             }, 
             ClockHandCommand {
-                0, /* position */
-                5, /* speed */
+                100, /* position */
+                500, /* speed */
                 Direction::COUNTER_CLOCKWISE,
-                MovementMode::DONT_MOVE,
+                MovementMode::AUTOMATIC,
             },
             SynchronizationMode::INDEPENDENT,
             false

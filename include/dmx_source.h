@@ -11,10 +11,11 @@
 class DmxSource {
 public:
     DmxSource(): dmx(buffer, NUM_CLOCK_CHANNELS) {
-       dmx.begin(DMXMode::Receiver, DMX_FIRST_CLOCK_CHANNEL);
+       dmx.begin(DMXMode::Receiver, DMX_FIRST_CLOCK_CHANNEL-1);
     };
     bool is_updated() { return dmx.dataUpdated(); }; 
     void reset_updated() { dmx.resetUpdated(); };
+    // TODO: https://arduino.stackexchange.com/a/18739
     uint8_t *data() { return buffer; };
 
 private:

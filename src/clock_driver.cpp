@@ -2,28 +2,11 @@
 #include <configuration.h>
 
 ClockDriver::ClockDriver()
-    : hour_hand(AccelStepper::FULL2WIRE, MOTOR2_DIR_A, MOTOR2_DIR_B)
-    , minute_hand(AccelStepper::FULL2WIRE, MOTOR1_DIR_A, MOTOR1_DIR_B)
+    : hour_hand(AccelStepper::DRIVER, MOTOR1_PUL, MOTOR1_DIR)
+    , minute_hand(AccelStepper::DRIVER, MOTOR2_PUL, MOTOR2_DIR)
 {
-    pinMode(MOTOR1_PWM_A, OUTPUT);
-    pinMode(MOTOR1_PWM_B, OUTPUT);
-    pinMode(MOTOR1_BRAKE_A, OUTPUT);
-    pinMode(MOTOR1_BRAKE_B, OUTPUT);
-
-    pinMode(MOTOR2_PWM_A, OUTPUT);
-    pinMode(MOTOR2_PWM_B, OUTPUT);
-    pinMode(MOTOR2_BRAKE_A, OUTPUT);
-    pinMode(MOTOR2_BRAKE_B, OUTPUT);
-
-    digitalWrite(MOTOR1_PWM_A, HIGH);
-    digitalWrite(MOTOR1_PWM_B, HIGH);
-    digitalWrite(MOTOR1_BRAKE_A, LOW);
-    digitalWrite(MOTOR1_BRAKE_B, LOW);
-                             
-    digitalWrite(MOTOR2_PWM_A, HIGH);
-    digitalWrite(MOTOR2_PWM_B, HIGH);
-    digitalWrite(MOTOR2_BRAKE_A, LOW);
-    digitalWrite(MOTOR2_BRAKE_B, LOW);
+    pinMode(MOTORS_ENABLE, OUTPUT);
+    digitalWrite(MOTORS_ENABLE, LOW);
 
     multi_stepper.addStepper(hour_hand);
     multi_stepper.addStepper(minute_hand);
