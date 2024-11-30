@@ -21,7 +21,8 @@ void run_timestep_independent(ClockHandCommand const& command, AccelStepper &ste
         stepper.runSpeed();
         break;
     case MovementMode::AUTOMATIC:
-        stepper.run();
+        if (stepper.distanceToGo() != 0)
+            stepper.runSpeed();
         break;
     }
 }
