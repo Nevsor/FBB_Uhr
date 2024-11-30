@@ -57,11 +57,11 @@ ClockHandCommand read_clock_hand_command(uint8_t *hand_data) {
     int speed_data = 5 * hand_data[SPEED_OFFSET];
     
     if (mode == MovementMode::AUTOMATIC)
-        if ( !is_in_range(position_data, 11, 190) )
+        if ( !is_in_range(position_data, 10, 249) )
             mode = MovementMode::DONT_MOVE;
 
     return {
-        position_data - 11,
+        position_data - 10,
         speed_data,
         direction,
         mode,
