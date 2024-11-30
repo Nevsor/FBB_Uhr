@@ -43,19 +43,46 @@ void ClockDriver::run_timestep()
     }
 }
 
-void set_stepper_values(ClockHandCommand const& command, AccelStepper &stepper)
+void set_stepper_speed(
+    ClockHandCommand const& command,
+    AccelStepper &stepper,
+    int microsteps)
 {
-    float speed = command.speed;
+    int speed = command.speed * microsteps;
+
+    // SynchronizationMode::SYNCHRONOUS
+    // SynchronizationMode::CLOCK
+    // The MultiStepper class reads the max speed to set the speeds.
     stepper.setMaxSpeed(speed);
 
-    if (command.direction == Direction::COUNTER_CLOCKWISE)
-        speed *= -1;
+    // SynchronisationMode::INDEPENDENT
+    stepper.setSpeed(
+        command.direction == Direction::CLOCKWISE
+        ? speed
+        : - speed
+    );
+}
 
-    if (command.mode == MovementMode::AUTOMATIC) {
-        stepper.moveTo(command.position);
+int calculate_virtual_position(
+    ClockHandCommand const& command, 
+    AccelStepper &stepper, 
+    int microsteps_per_revolution)
+{
+    int virtual_position = command.position;
+    
+    if (command.direction == Direction::CLOCKWISE
+        && command.position < stepper.currentPosition()) 
+    { 
+        virtual_position += microsteps_per_revolution;
     }
 
-    stepper.setSpeed(speed);
+    if (command.direction == Direction::COUNTER_CLOCKWISE
+        && command.position > stepper.currentPosition()) 
+    { 
+        virtual_position -= microsteps_per_revolution;
+    }
+    
+    return virtual_position;
 }
 
 void ClockDriver::set_stepper_values_synchronous(ClockCommand const& command) 
@@ -72,12 +99,12 @@ void ClockDriver::set_command(ClockCommand const& command)
     current_command = command;
     
     if (command.set_zero) {
-        minute_hand.setCurrentPosition(0);
         hour_hand.setCurrentPosition(0);
+        minute_hand.setCurrentPosition(0);
     } 
 
-    set_stepper_values(command.hour_hand, hour_hand);
-    set_stepper_values(command.minute_hand, minute_hand);
+    set_stepper_speed(command.hour_hand, hour_hand, HOUR_HAND_MICROSTEPS);
+    set_stepper_speed(command.minute_hand, minute_hand, MINUTE_HAND_MICROSTEPS);
 
     if (current_command.synchronization_mode == SynchronizationMode::SYNCHRONOUS) {
         set_stepper_values_synchronous(command);

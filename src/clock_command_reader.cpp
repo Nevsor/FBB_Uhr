@@ -62,7 +62,7 @@ ClockHandCommand read_clock_hand_command(uint8_t *hand_data) {
 
     return {
         position_data - 10,
-        speed_data * MAX_SPEED_MICROSTEPS_PER_SECOND / 255,
+        speed_data * MAX_SPEED_STEPS_PER_SECOND / 255,
         direction,
         mode,
     };
