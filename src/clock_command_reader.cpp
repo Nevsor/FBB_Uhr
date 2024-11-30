@@ -54,7 +54,7 @@ ClockHandCommand read_clock_hand_command(uint8_t *hand_data) {
     Direction direction = read_direction(mode_and_direction);
     
     int position_data = hand_data[POSITION_OFFSET];
-    int speed_data = 5 * hand_data[SPEED_OFFSET];
+    int speed_data = hand_data[SPEED_OFFSET];
     
     if (mode == MovementMode::AUTOMATIC)
         if ( !is_in_range(position_data, 10, 249) )
@@ -62,7 +62,7 @@ ClockHandCommand read_clock_hand_command(uint8_t *hand_data) {
 
     return {
         position_data - 10,
-        speed_data,
+        speed_data * MAX_SPEED_MICROSTEPS_PER_SECOND / 255,
         direction,
         mode,
     };

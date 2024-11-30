@@ -12,5 +12,5 @@ constexpr int MOTORS_ENABLE = 8;
 constexpr int MOTOR1_DIR = 10;
 constexpr int MOTOR2_DIR = 11;
 
-
 constexpr int DMX_LED_PIN = 5;
+constexpr int MAX_SPEED_MICROSTEPS_PER_SECOND = 1200;
