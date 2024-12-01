@@ -1,0 +1,61 @@
+<h1 id="fbb_uhr">FBB_Uhr</h1>
+<p>Eine Uhr als Theaterequisit, steuerbar über DMX</p>
+<h1 id="protokoll">Protokoll</h1>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 30%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Kanal</th>
+<th>Name</th>
+<th>Werte</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Position Stundenzeiger</td>
+<td>0-9: NOP <br> 10-249: 0-358.5° <br> 250-255: NOP</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Geschwindigkeit Stundenzeiger</td>
+<td>0-255: Stillstand bis maximale Geschwindigkeit</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Modus Stundenzeiger</td>
+<td>0-29 automatisch im Uhrzeigersinn <br> 30-59 NOP <br> 60-89
+automatisch gegen Uhrzeigersinn <br> 90-119 NOP <br> 120-149 manuell im
+Uhrzeigersinn <br> 150-179 NOP <br> 180-209 manuell gegen Uhrzeigersinn
+<br> 210-255 NOP</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Position Minutenzeiger</td>
+<td>0-9: NOP <br> 10-249: 0-358.5° <br> 250-255: NOP</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Geschwindigkeit Minutenzeiger</td>
+<td>0-255: Stillstand bis maximale Geschwindigkeit</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Modus Minutenzeiger</td>
+<td>0-29 automatisch im Uhrzeigersinn <br> 30-59 NOP <br> 60-89
+automatisch gegen Uhrzeigersinn <br> 90-119 NOP <br> 120-149 manuell im
+Uhrzeigersinn <br> 150-179 NOP <br> 180-209 manuell gegen Uhrzeigersinn
+<br> 210-255 NOP</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Synchronisationsmodus</td>
+<td>0-49: unabhängig <br> 50-99: synchron <br> 100-149: “Uhrmodus” <br>
+150-189 NOP <br> 210-229 Nullpunkt setzen <br> 230-255 NOP</td>
+</tr>
+</tbody>
+</table>

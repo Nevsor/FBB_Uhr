@@ -1,4 +1,4 @@
 #pragma once
 
-const int SECONDS = 1000;
+const long SECONDS = 1000;
  

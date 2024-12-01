@@ -18,8 +18,8 @@ enum class Direction {
 };
 
 struct ClockHandCommand {
-    int position;
-    int speed;
+    long position;
+    float speed;
     Direction direction;
     MovementMode mode;
 };

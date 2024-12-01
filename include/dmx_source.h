@@ -17,6 +17,7 @@ public:
     void reset_updated() { dmx.resetUpdated(); };
     // TODO: https://arduino.stackexchange.com/a/18739
     uint8_t *data() { return buffer; };
+    bool is_connected() { return dmx.lastReceivedTime()+100 > millis(); };
 
 private:
     uint8_t buffer[NUM_CLOCK_CHANNELS];
@@ -28,9 +29,8 @@ public:
     bool is_updated() { return updated; }
     void reset_updated() { updated = false; }
     void set_buffer(uint8_t *data) {
-        for (int i; i<NUM_CLOCK_CHANNELS; i++)
-            buffer[i] = data[i];
-        
+        for (long i; i<NUM_CLOCK_CHANNELS; i++)
+            buffer[i] = data[i]; 
         updated = true; 
     }
 

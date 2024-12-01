@@ -15,24 +15,24 @@ public:
 
 // Stub-Klasse um eine Sequenz von fest programmierten `ClockCommand`s auf
 // der Uhr zu testen.
-template <int MAX_COMMANDS>
+template <long MAX_COMMANDS>
 class StubClockCommandReader {
 public:
     StubClockCommandReader() = default;
-    void add_command(ClockCommand const& command, int start_at_millis);
+    void add_command(ClockCommand const& command, long start_at_millis);
     ClockCommand read_command(uint8_t *) const;
 
 private:
     ClockCommand commands[MAX_COMMANDS]; 
-    unsigned int commands_timings_milliseconds[MAX_COMMANDS];
-    int current_command = -1;
-    int num_commands = 0;
+    unsigned long commands_timings_milliseconds[MAX_COMMANDS];
+    long current_command = -1;
+    long num_commands = 0;
 };
 
-template <int MAX_COMMANDS>
+template <long MAX_COMMANDS>
 void StubClockCommandReader<MAX_COMMANDS>::add_command(
     ClockCommand const& command, 
-    int start_at_millis) 
+    long start_at_millis) 
 {
     assert (num_commands < MAX_COMMANDS);
     
@@ -45,9 +45,9 @@ void StubClockCommandReader<MAX_COMMANDS>::add_command(
     num_commands++;
 }
 
-template <int MAX_COMMANDS>
+template <long MAX_COMMANDS>
 ClockCommand StubClockCommandReader<MAX_COMMANDS>::read_command(uint8_t *) const {
-    int &current_command = const_cast<int &>(this->current_command);
+    long &current_command = const_cast<long &>(this->current_command);
 
     unsigned long now = millis();
 

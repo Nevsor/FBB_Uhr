@@ -19,7 +19,8 @@ public:
     void run_timestep();
     
 private:
-    void set_stepper_values_synchronous(ClockCommand const& command);
+    void set_stepper_target_pos_synchronous(ClockCommand const& command);
+    void set_stepper_target_pos_clock(ClockCommand const& command);
 
     ClockCommand current_command;
     AccelStepper hour_hand;
